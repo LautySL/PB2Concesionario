@@ -1,5 +1,6 @@
 package dominio;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -41,6 +42,9 @@ public class Concesionaria {
 	}
 
 	public Coche buscarPorPatente(String patente) throws patenteNoExisteException, patenteInvalida {
+		// recorro el TreeSet de coches y si su patente es igual a la que yo llamo por
+		// parametro y es una patente valida entonces devuelvo ese array, sino hago un
+		// Exception donde no encuntre la patente
 		for (Coche coche : coches) {
 			if (coche.getPatente().equals(patente) && patenteValida(patente))
 				return coche;
@@ -48,7 +52,22 @@ public class Concesionaria {
 		throw new patenteNoExisteException("La patente no existe");
 	}
 
+	public ArrayList<Coche> buscarPorMarca(String marca) {
+		// creo una coleccion de autos encontrados, lo recorro y si la marca de ese auto
+		// q estoy por registrar es igual a la marca que le paso por parametro entonces
+		// agreco ese coche a la coleccion y retorno la coleccion.
+		ArrayList<Coche> autosEncontrados = new ArrayList<>();
+		for (Coche coche : coches) {
+			if (coche.getMarca().equals(marca)) {
+				autosEncontrados.add(coche);
+			}
+		}
+		return autosEncontrados;
+	}
+
 	private boolean patenteValida(String patente) throws patenteInvalida {
+		// si la patente tiene un tamaño de nueve caracteres, es una patente valida sino
+		// llamo al throw de Exception q avise
 		if (patente.length() == 9) {
 			return true;
 		}
