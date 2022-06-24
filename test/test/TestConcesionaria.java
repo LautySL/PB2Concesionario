@@ -1,21 +1,36 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+
+import dominio.Coche;
+import dominio.Concesionaria;
 
 public class TestConcesionaria {
 
 	@Test
 	public void crearConcesionaria() {
+		Concesionaria c = new Concesionaria("Consesionaria con S"); 
 
 	}
 
 	@Test
 	public void crearCoche() {
-
+		// patente, marca, modelo, precio
+		Coche auto = new Coche("HSS 911", "Fiat", "Palio", 10.0);
 	}
 
 	@Test
 	public void queSePuedaAgregarUnAutoALaConcesionaria() {
+		Concesionaria concesionaria = new Concesionaria("MrGuarango"); 
+		Coche auto = new Coche("HSS 911", "Fiat", "Palio", 10.0);
+		
+		concesionaria.agregarCoche(auto);
+		Integer valorEsperado = 1;
+		Integer valorObtenido = concesionaria.obtenerCantidadDeCoches();
+		assertEquals(valorEsperado, valorObtenido);
+		//assertEquals(1, concesionaria.obtenerCantidadDeCoches());
 
 	}
 
