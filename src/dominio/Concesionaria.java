@@ -30,4 +30,9 @@ public class Concesionaria {
 		return this.coches.size();
 	}
 
+	public void eliminarCoche(Coche auto) {
+		this.coches.remove(auto);
+		
+	}
+
 }

@@ -36,7 +36,19 @@ public class TestConcesionaria {
 
 	@Test
 	public void queSePuedaEliminarUnAutoALaConcesionaria() {
-
+		Concesionaria concesionaria = new Concesionaria("MrGuarango"); 
+		Coche auto = new Coche("HSS 911", "Fiat", "Palio", 10.0);
+		Coche auto2 = new Coche("JOB 809", "no se", "tampoco se", 10.0);
+		
+		concesionaria.agregarCoche(auto);
+		concesionaria.agregarCoche(auto2);
+		concesionaria.eliminarCoche(auto);
+		
+		Integer valorEsperado = 1;
+		Integer valorObtenido = concesionaria.obtenerCantidadDeCoches();
+		assertEquals(valorEsperado, valorObtenido);
+		
+		
 	}
 
 	@Test
