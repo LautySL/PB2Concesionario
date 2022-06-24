@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import dominio.Coche;
 import dominio.Concesionaria;
+import dominio.patenteInvalida;
+import dominio.patenteNoExisteException;
 
 public class TestConcesionaria {
 
@@ -53,21 +55,43 @@ public class TestConcesionaria {
 
 	@Test
 	public void queSePuedanMostrarTodosLosCochesDeLaConcesionaria() {
+		Concesionaria concesionaria = new Concesionaria("MrGuarango"); 
+		Coche auto = new Coche("HSS 911", "Fiat", "Palio", 10.0);
+		Coche auto2 = new Coche("JOB 809", "no se", "tampoco se", 10.0);
+		concesionaria.agregarCoche(auto);
+		concesionaria.agregarCoche(auto2);
+		System.out.println(concesionaria.mostrarCoches());
 
 	}
 
 	@Test
 	public void queNoSePuedaAgregarDosAutosConLaMismaPatente() {
+		Concesionaria concesionaria = new Concesionaria("MrGuarango"); 
+		Coche auto = new Coche("HSS 911", "Fiat", "Palio", 10.0);
+		Coche auto2 = new Coche("HSS 911", "no se", "tampoco se", 10.0);
+		concesionaria.agregarCoche(auto);
+		concesionaria.agregarCoche(auto2);
+		Integer resultadoEsperado = 1;
+		// espera 1 solo auto, no puede esperar 2 porq tienen la misma patente.
+		Integer resultadoObtenido = concesionaria.obtenerCantidadDeCoches();
+
+		assertEquals(resultadoEsperado, resultadoObtenido);
 
 	}
 
 	@Test
-	public void queSePuedaBuscarUnAutoPorPatente() {
-
+	public void queSePuedaBuscarUnAutoPorPatente() throws patenteNoExisteException, patenteInvalida {
+		Concesionaria concesionaria = new Concesionaria("MrGuarango"); 
+		String patente = "HSSFHSIHO";
+		Coche auto = new Coche(patente, "Fiat", "Palio", 10.0);
+		concesionaria.agregarCoche(auto);
+		Coche cocheEncontrado = concesionaria.buscarPorPatente(patente);
+		assertEquals(patente, cocheEncontrado.getPatente());
 	}
 
 	@Test
 	public void queSePuedaBuscarAutosPorMarca() {
+		
 
 	}
 

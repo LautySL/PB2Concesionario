@@ -23,7 +23,7 @@ public class Concesionaria {
 
 	public void agregarCoche(Coche auto) {
 		this.coches.add(auto);
-		
+
 	}
 
 	public Integer obtenerCantidadDeCoches() {
@@ -32,7 +32,28 @@ public class Concesionaria {
 
 	public void eliminarCoche(Coche auto) {
 		this.coches.remove(auto);
-		
+
+	}
+
+	public String mostrarCoches() {
+		// TODO Auto-generated method stub
+		return this.coches.toString();
+	}
+
+	public Coche buscarPorPatente(String patente) throws patenteNoExisteException, patenteInvalida {
+		for (Coche coche : coches) {
+			if (coche.getPatente().equals(patente) && patenteValida(patente))
+				return coche;
+		}
+		throw new patenteNoExisteException("La patente no existe");
+	}
+
+	private boolean patenteValida(String patente) throws patenteInvalida {
+		if (patente.length() == 9) {
+			return true;
+		}
+
+		throw new patenteInvalida("la patente es invalida");
 	}
 
 }
