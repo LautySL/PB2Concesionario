@@ -92,25 +92,30 @@ public class TestConcesionaria {
 
 	@Test
 	public void queSePuedaBuscarAutosPorMarca() {
-		Concesionaria concesionaria = new Concesionaria("MrGuarango");
-		String marca = "Fiat";
-		Coche auto = new Coche("HSS 911", marca, "Palio", 10.0);
-		String marca2 = "Toyota";
-		Coche auto2 = new Coche("HSS 911", marca2, "tampoco se", 10.0);
+		// ESTO DE ALGUNA MANERA ESTA MAL
+		Concesionaria concesionaria = new Concesionaria("Milanesa");
+		String marca = "BMW";
+		Coche auto1 = new Coche("AF 546 HJ", marca, "M3", 130000.0);
+		String marca2 = "BMW";
+		Coche auto2 = new Coche("AG 377 AJ", marca2, "M2", 950000.0);
 
-		concesionaria.agregarCoche(auto);
+		concesionaria.agregarCoche(auto1);
 		concesionaria.agregarCoche(auto2);
 
 		// creo dos listas como referencia a los resultados que espero y obtengo. los
 		// agregro a la lista esperada y si en la lista de coches obtenidos está la
 		// marca que estoy buscando --- ya no puedo analizar mas codigo
-		ArrayList<Coche> cocheEsperado = new ArrayList<>();
-		ArrayList<Coche> cocheObtenido = new ArrayList<>();
-		cocheEsperado.add(auto);
-		cocheEsperado.add(auto2);
-		cocheObtenido = concesionaria.buscarPorMarca(marca);
+		ArrayList<Coche> autosEsperados = new ArrayList<>();
+		ArrayList<Coche> autosObtenidos = new ArrayList<>();
+		autosEsperados.add(auto1);
+		autosEsperados.add(auto2);
+
+		autosObtenidos = concesionaria.buscarPorMarca(marca);
 		// que carajo hice no se no pregunten pero creo q esta bien
-		assertEquals(cocheEsperado.get(0).getMarca(), cocheObtenido.get(1).getMarca());
+		assertEquals(autosEsperados.get(0).getMarca(), autosObtenidos.get(1).getMarca());
+		// actualizacion del analisis: comparo las marcas de las listas, si son iguales
+		// es true pero que carajos hace el get() ?????.
+		//  el get de arrayList se usa para obtener el elemento de un índice específico dentro de la lista.
 	}
 
 	@Test
