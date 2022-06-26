@@ -57,10 +57,10 @@ public class Concesionaria {
 		return autosEncontrados;
 	}
 
-	private boolean patenteValida(String patente) throws patenteInvalida {
-		// si la patente tiene un tamaño de nueve caracteres, es una patente valida sino
+	public boolean patenteValida(String patente) throws patenteInvalida {
+		// si la patente tiene un tamaño mayor a nueve caracteres, es una patente valida sino
 		// llamo al throw de Exception q avise
-		if (patente.length() == 9) {
+		if (patente.length() >= 9) {
 			return true;
 		}
 

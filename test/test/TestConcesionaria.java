@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -176,7 +177,18 @@ public class TestConcesionaria {
 	}
 
 	@Test
-	public void validarQueSeProduzcaUnaExcepcionSiLaPatenteEsInvalida() {
+	public void validarQueSeProduzcaUnaExcepcionSiLaPatenteEsInvalida() throws patenteInvalida {
+		Concesionaria c = new Concesionaria("AYUDA");
+		// la patente es invalida cuando no cumple con los requisitos
+		//c.patenteValida("78439");
+		String patente = "AF546HJ09";
+		// no es necesario crear un auto porq el metodo es innecesario
+		//String patente = "hdkjsaFJDKL";
+		//Coche autito = new Coche(patente, "Volkswagen", "Golf GTI", 35000.0);
+		// los espacios son caracteres
+		//assertEquals(0, 0);
+		assertTrue(c.patenteValida(patente));
+		
 
 	}
 
