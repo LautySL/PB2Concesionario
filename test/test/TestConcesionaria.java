@@ -176,18 +176,18 @@ public class TestConcesionaria {
 
 	}
 
-	@Test
+	@Test (expected = patenteInvalida.class)
 	public void validarQueSeProduzcaUnaExcepcionSiLaPatenteEsInvalida() throws patenteInvalida {
-		Concesionaria c = new Concesionaria("AYUDA");
+		Concesionaria concesionaria = new Concesionaria("AYUDA");
 		// la patente es invalida cuando no cumple con los requisitos
-		//c.patenteValida("78439");
-		String patente = "AF546HJ09";
 		// no es necesario crear un auto porq el metodo es innecesario
+		
 		//String patente = "hdkjsaFJDKL";
 		//Coche autito = new Coche(patente, "Volkswagen", "Golf GTI", 35000.0);
+		
 		// los espacios son caracteres
-		//assertEquals(0, 0);
-		assertTrue(c.patenteValida(patente));
+		String patente = "AF 234";
+		assertTrue(concesionaria.patenteValida(patente));
 		
 
 	}
