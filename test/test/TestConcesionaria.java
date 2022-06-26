@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import org.junit.Test;
 
@@ -46,6 +47,7 @@ public class TestConcesionaria {
 
 		concesionaria.agregarCoche(auto);
 		concesionaria.agregarCoche(auto2);
+		// remove
 		concesionaria.eliminarCoche(auto);
 
 		Integer valorEsperado = 1;
@@ -61,6 +63,7 @@ public class TestConcesionaria {
 		Coche auto2 = new Coche("JOB 809", "no se", "tampoco se", 10.0);
 		concesionaria.agregarCoche(auto);
 		concesionaria.agregarCoche(auto2);
+		// ToString
 		System.out.println(concesionaria.mostrarCoches());
 
 	}
@@ -87,6 +90,8 @@ public class TestConcesionaria {
 		Coche auto = new Coche(patente, "Fiat", "Palio", 10.0);
 		concesionaria.agregarCoche(auto);
 		Coche cocheEncontrado = concesionaria.buscarPorPatente(patente);
+		// en valorEsperado me traigo la patente que buscó el metodo buscarPatente y la
+		// comparo con la patente que creé
 		assertEquals(patente, cocheEncontrado.getPatente());
 	}
 
@@ -115,12 +120,35 @@ public class TestConcesionaria {
 		assertEquals(autosEsperados.get(0).getMarca(), autosObtenidos.get(1).getMarca());
 		// actualizacion del analisis: comparo las marcas de las listas, si son iguales
 		// es true pero que carajos hace el get() ?????.
-		//  el get de arrayList se usa para obtener el elemento de un índice específico dentro de la lista.
+		// el get de arrayList se usa para obtener el elemento de un índice específico
+		// dentro de la lista.
 	}
 
 	@Test
 	public void queSePuedaOrdenarPorMarcaYModelo() {
+		Concesionaria concesionaria = new Concesionaria("JFDKLSA");
+		Coche auto = new Coche("AF 546 HJ", "BMW", "M3", 130000.0);
+		Coche auto2 = new Coche("AE 223 DG", "Volkswagen", "Scirocco", 35000.0);
+		Coche auto3 = new Coche("AA 420 EG", "Mercedez", "A45", 65000.0);
+		Coche auto4 = new Coche("AE 223 DG", "Volkswagen", "Golf GTI", 35000.0);
 
+		concesionaria.agregarCoche(auto);
+		concesionaria.agregarCoche(auto2);
+		concesionaria.agregarCoche(auto3);
+		concesionaria.agregarCoche(auto4);
+
+		TreeSet<Coche> autosEsperados = new TreeSet<>();
+		autosEsperados.add(auto);
+		autosEsperados.add(auto2);
+		autosEsperados.add(auto3);
+		autosEsperados.add(auto4);
+		// agrego coches a la concesionaria, al treeSet me agrego dos listas con valores
+		// esperados y obetnidos, los ordendo y comparo con el assertEquals
+		// toda la logica esta en la interfaz comparator
+
+		TreeSet<Coche> autosObtenidos = new TreeSet<>();
+		autosObtenidos = concesionaria.ordenarPorMarcaYModelo();
+		assertEquals(autosEsperados, autosObtenidos);
 	}
 
 	@Test

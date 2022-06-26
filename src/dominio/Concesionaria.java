@@ -14,14 +14,6 @@ public class Concesionaria {
 		this.coches = new TreeSet<>();
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
 	public void agregarCoche(Coche auto) {
 		this.coches.add(auto);
 
@@ -73,6 +65,28 @@ public class Concesionaria {
 		}
 
 		throw new patenteInvalida("la patente es invalida");
+	}
+
+	public TreeSet<Coche> ordenarPorMarcaYModelo() {
+		// no se no entiendo el parametro TreeSet, ahi busco en google
+		// lucas; si una clase implementa la interfaz comparator, los objetos creados a
+		// partir de esa clase se pueden ordenar.
+		// creo un arbol con autos ordenados, los autos van a estar ordenados porque ya
+		// se instancia con la clase Ordenar.
+		// es como usar un metodo ordenar de concesionaria con la diferencia de que es
+		// mas efizcas usar una interfaz que los ordene por marca y modelo
+		TreeSet<Coche> autosOrdenados = new TreeSet<>(new OrdenarAutosPorMarcaYModelo());
+		autosOrdenados.addAll(coches);
+		// agrego todos los autos a autosOrdenados
+		return autosOrdenados;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 }
