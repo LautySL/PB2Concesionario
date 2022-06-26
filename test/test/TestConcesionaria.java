@@ -153,6 +153,25 @@ public class TestConcesionaria {
 
 	@Test
 	public void queSePuedaOrdenarCochesPorPrecioYPatente() {
+		Concesionaria concesionaria = new Concesionaria("JFDKLSA");
+		Coche auto = new Coche("AF 546 HJ", "BMW", "M3", 130000.0);
+		Coche auto2 = new Coche("AE 223 DG", "Volkswagen", "Scirocco", 35000.0);
+		Coche auto3 = new Coche("AA 420 EG", "Mercedez", "A45", 65000.0);
+		Coche auto4 = new Coche("AE 223 DG", "Volkswagen", "Golf GTI", 35000.0);
+		concesionaria.agregarCoche(auto);
+		concesionaria.agregarCoche(auto2);
+		concesionaria.agregarCoche(auto3);
+		concesionaria.agregarCoche(auto4);
+
+		TreeSet<Coche> autosEsperados = new TreeSet<>();
+		autosEsperados.add(auto);
+		autosEsperados.add(auto2);
+		autosEsperados.add(auto3);
+		autosEsperados.add(auto4);
+		
+		TreeSet<Coche> autosObtenidos = new TreeSet<>();
+		autosObtenidos = concesionaria.ordenarPorPrecioYPatente();
+		assertEquals(autosEsperados, autosObtenidos);
 
 	}
 

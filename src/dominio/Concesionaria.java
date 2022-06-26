@@ -81,6 +81,12 @@ public class Concesionaria {
 		return autosOrdenados;
 	}
 
+	public TreeSet<Coche> ordenarPorPrecioYPatente() {
+		TreeSet<Coche> autosOrdenados = new TreeSet<>(new OrdenarAutosPorPrecioYPatente());
+		autosOrdenados.addAll(coches);
+		return autosOrdenados;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
