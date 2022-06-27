@@ -169,31 +169,39 @@ public class TestConcesionaria {
 		autosEsperados.add(auto2);
 		autosEsperados.add(auto3);
 		autosEsperados.add(auto4);
-		
+
 		TreeSet<Coche> autosObtenidos = new TreeSet<>();
 		autosObtenidos = concesionaria.ordenarPorPrecioYPatente();
 		assertEquals(autosEsperados, autosObtenidos);
 
 	}
 
-	@Test (expected = patenteInvalida.class)
+	@Test(expected = patenteInvalida.class)
 	public void validarQueSeProduzcaUnaExcepcionSiLaPatenteEsInvalida() throws patenteInvalida {
 		Concesionaria concesionaria = new Concesionaria("AYUDA");
 		// la patente es invalida cuando no cumple con los requisitos
 		// no es necesario crear un auto porq el metodo es innecesario
-		
-		//String patente = "hdkjsaFJDKL";
-		//Coche autito = new Coche(patente, "Volkswagen", "Golf GTI", 35000.0);
-		
+
+		// String patente = "hdkjsaFJDKL";
+		// Coche autito = new Coche(patente, "Volkswagen", "Golf GTI", 35000.0);
+
 		// los espacios son caracteres
 		String patente = "AF 234";
 		assertTrue(concesionaria.patenteValida(patente));
-		
 
 	}
 
-	@Test
-	public void queAnteUnAutoInexistenteTermineConPatenteNoExisteException() {
+	@Test(expected = patenteNoExisteException.class)
+	public void queAnteUnAutoInexistenteTermineConPatenteNoExisteException()
+			throws patenteNoExisteException, patenteInvalida {
+		Concesionaria concesionaria = new Concesionaria("No quiero mas");
+		String patente = "JOBA 9180";
+		//try {
+		concesionaria.buscarPorPatente(patente);
+		//} catch (patenteInvalida e) {
+		//	e.getMessage();
+		//}
+		// no es necesario utilizar el try-catch cuando usas un expected
 
 	}
 
