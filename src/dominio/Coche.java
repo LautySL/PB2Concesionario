@@ -55,13 +55,19 @@ public class Coche implements Comparable<Coche> {
 
 	@Override
 	public String toString() {
-		//return "Coche [patente=" + patente + ", marca=" + marca + ", modelo=" + modelo + ", precio=" + precio + "]";
-		return "Coche [patente=" + this.getPatente() + ", marca=" + this.getMarca() + ", modelo=" + this.getModelo() + ", precio=" + this.getPrecio() + "]";
+		// return "Coche [patente=" + patente + ", marca=" + marca + ", modelo=" +
+		// modelo + ", precio=" + precio + "]";
+		return "Coche [patente = " + this.getPatente() + ", marca = " + this.getMarca() + ", modelo = " + this.getModelo()
+				+ ", precio = " + this.getPrecio() + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(marca, modelo, patente, precio);
+		// return Objects.hash(marca, modelo, patente, precio);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((patente == null) ? 0 : patente.hashCode());
+		return result;
 	}
 
 	@Override
@@ -73,8 +79,21 @@ public class Coche implements Comparable<Coche> {
 		if (getClass() != obj.getClass())
 			return false;
 		Coche other = (Coche) obj;
-		return Objects.equals(marca, other.marca) && Objects.equals(modelo, other.modelo)
-				&& Objects.equals(patente, other.patente) && Objects.equals(precio, other.precio);
+		if (patente == null) {
+			if (other.patente != null)
+				return false;
+		} else if (!patente.equals(other.patente))
+			return false;
+		return true;
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Coche other = (Coche) obj;
+//		return Objects.equals(marca, other.marca) && Objects.equals(modelo, other.modelo)
+//				&& Objects.equals(patente, other.patente) && Objects.equals(precio, other.precio);
 	}
 
 }
