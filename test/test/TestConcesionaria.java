@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.TreeSet;
 
 import org.junit.Test;
@@ -196,24 +199,45 @@ public class TestConcesionaria {
 			throws patenteNoExisteException, patenteInvalida {
 		Concesionaria concesionaria = new Concesionaria("No quiero mas");
 		String patente = "JOBA 9180";
-		//try {
+		// try {
 		concesionaria.buscarPorPatente(patente);
-		//} catch (patenteInvalida e) {
-		//	e.getMessage();
-		//}
+		// } catch (patenteInvalida e) {
+		// e.getMessage();
+		// }
 		// no es necesario utilizar el try-catch cuando usas un expected
 
 	}
 
-	@Test (expected = patenteNoExisteException.class)
-	public void queNoSePuedaBuscarUnAutoPorPatenteSiLaPatenteNoExiste() throws patenteNoExisteException, patenteInvalida {
+	@Test(expected = patenteNoExisteException.class)
+	public void queNoSePuedaBuscarUnAutoPorPatenteSiLaPatenteNoExiste()
+			throws patenteNoExisteException, patenteInvalida {
 		Concesionaria c = new Concesionaria("why not me?");
-		//c.agregarCoche(new Coche("..","22","sdsa",2.0));
+		// c.agregarCoche(new Coche("..","22","sdsa",2.0));
 		c.buscarPorPatente("fjdkls");
 	}
 
 	@Test
 	public void testAEleccion() {
+		Coche auto = new Coche("AF 546 HJ", "BMW", "M3", 130000.0);
+		Coche auto2 = new Coche("AE 223 DG", "Volkswagen", "Scirocco", 35000.0);
+		Coche auto3 = new Coche("AA 420 EG", "Mercedez", "A45", 65000.0);
+
+		Map<String, Coche> coches = new HashMap<>();
+		List<Coche> cochesMayorA10000 = new ArrayList<>();
+
+		coches.put("A", auto);
+		coches.put("B", auto2);
+		coches.put("C", auto3);
+		// map necesita una clave y un valor. se agrega con put de forma ordenada. el
+		// for recorre ese mapa y si su precio es mayor a diez mil entonces agrego esos
+		// coches mayores a 10000
+		for (Coche coche : coches.values()) {
+			if (coche.getPrecio() > 10000.0) {
+				cochesMayorA10000.add(coche);
+			}
+		}
+		// System.out.println();
+		// assertEquals(coches.get("a"), m4);
 
 	}
 }
