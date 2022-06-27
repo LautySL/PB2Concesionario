@@ -205,9 +205,11 @@ public class TestConcesionaria {
 
 	}
 
-	@Test
-	public void queNoSePuedaBuscarUnAutoPorPatenteSiLaPatenteNoExiste() {
-
+	@Test (expected = patenteNoExisteException.class)
+	public void queNoSePuedaBuscarUnAutoPorPatenteSiLaPatenteNoExiste() throws patenteNoExisteException, patenteInvalida {
+		Concesionaria c = new Concesionaria("why not me?");
+		//c.agregarCoche(new Coche("..","22","sdsa",2.0));
+		c.buscarPorPatente("fjdkls");
 	}
 
 	@Test
