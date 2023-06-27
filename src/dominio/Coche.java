@@ -2,7 +2,7 @@ package dominio;
 
 import java.util.Objects;
 
-public class Coche implements Comparable<Coche> {
+public class Coche implements Comparable <Coche> {
 
 	private String patente;
 	private String marca;
@@ -49,8 +49,8 @@ public class Coche implements Comparable<Coche> {
 	}
 
 	@Override
-	public int compareTo(Coche o) {
-		return this.patente.compareTo(o.getPatente());
+	public int compareTo(Coche coche) {
+		return this.patente.compareTo(coche.getPatente());
 	}
 
 	@Override

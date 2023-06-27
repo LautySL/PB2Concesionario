@@ -146,6 +146,7 @@ public class TestConcesionaria {
 		autosEsperados.add(auto2);
 		autosEsperados.add(auto3);
 		autosEsperados.add(auto4);
+		
 		// agrego coches a la concesionaria, al treeSet me agrego dos listas con valores
 		// esperados y obetnidos, los ordendo y comparo con el assertEquals
 		// toda la logica esta en la interfaz comparator
@@ -167,14 +168,16 @@ public class TestConcesionaria {
 		concesionaria.agregarCoche(auto3);
 		concesionaria.agregarCoche(auto4);
 
-		TreeSet<Coche> autosEsperados = new TreeSet<>();
-		autosEsperados.add(auto);
-		autosEsperados.add(auto2);
-		autosEsperados.add(auto3);
-		autosEsperados.add(auto4);
+//		TreeSet<Coche> autosEsperados = new TreeSet<>();
+//		autosEsperados.add(auto);
+//		autosEsperados.add(auto2);
+//		autosEsperados.add(auto3);
+//		autosEsperados.add(auto4);
 
 		TreeSet<Coche> autosObtenidos = new TreeSet<>();
+		
 		autosObtenidos = concesionaria.ordenarPorPrecioYPatente();
+		
 		assertEquals(autosEsperados, autosObtenidos);
 
 	}
@@ -195,24 +198,17 @@ public class TestConcesionaria {
 	}
 
 	@Test(expected = patenteNoExisteException.class)
-	public void queAnteUnAutoInexistenteTermineConPatenteNoExisteException()
-			throws patenteNoExisteException, patenteInvalida {
+	public void queAnteUnAutoInexistenteTermineConPatenteNoExisteException() throws Exception {
 		Concesionaria concesionaria = new Concesionaria("No quiero mas");
+		
 		String patente = "JOBA 9180";
-		// try {
+		
 		concesionaria.buscarPorPatente(patente);
-		// } catch (patenteInvalida e) {
-		// e.getMessage();
-		// }
-		// no es necesario utilizar el try-catch cuando usas un expected
-
 	}
 
-	@Test(expected = patenteNoExisteException.class)
-	public void queNoSePuedaBuscarUnAutoPorPatenteSiLaPatenteNoExiste()
-			throws patenteNoExisteException, patenteInvalida {
+	@Test (expected = patenteNoExisteException.class)
+	public void queNoSePuedaBuscarUnAutoPorPatenteSiLaPatenteNoExiste() throws Exception {
 		Concesionaria c = new Concesionaria("why not me?");
-		// c.agregarCoche(new Coche("..","22","sdsa",2.0));
 		c.buscarPorPatente("fjdkls");
 	}
 
